@@ -31,3 +31,17 @@ export const LeftArrow = () => {
     </svg>
   );
 };
+
+export const LiveIcon = () => {
+  return (
+    <svg
+      width={10}
+      height={10}
+      viewBox="0 0 10 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="4.71437" cy="4.57143" r="4.57143" fill="white" />
+    </svg>
+  );
+};

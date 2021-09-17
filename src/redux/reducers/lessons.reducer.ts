@@ -6,13 +6,13 @@ interface Action {
 }
 
 const initialState = {
-  liveLessons: {},
+  promotedLiveLessons: [],
 };
 
 export default (state = initialState, action: Action) => {
   switch (action.type) {
-    case lessonActionTypes.GET_LIVE_LESSONS:
-      return { ...state, user: action.payload };
+    case lessonActionTypes.GET_PROMOTED_LIVE_LESSONS:
+      return { ...state, promotedLiveLessons: action.payload };
     default:
       return state;
   }
