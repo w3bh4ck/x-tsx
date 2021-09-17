@@ -1,23 +1,29 @@
-import React from 'react';
+import { FC, useRef } from 'react';
 import styled from 'styled-components';
 import { LeftArrow, RightArrow } from '../../assets/icons/Icons';
 import SliderTile from '../../components/cards/SliderTile';
 
-const LiveSlider = () => {
+interface Iprops {
+  promotedLessons: [];
+}
+
+const LiveSlider: FC<Iprops> = ({ promotedLessons }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (scrollOffset: number) => {
+    if (scrollRef.current) scrollRef.current.scrollLeft += scrollOffset;
+  };
+
   return (
     <div>
-      <StyledLiveSlider>
-        <StyledLeftButton>
+      <StyledLiveSlider ref={scrollRef}>
+        <StyledLeftButton onClick={() => scroll(-500)}>
           <LeftArrow />
         </StyledLeftButton>
-        <SliderTile />
-        <SliderTile />
-        <SliderTile />
-        <SliderTile />
-        <SliderTile />
-        <SliderTile />
-        <SliderTile />
-        <StyledRightButton>
+        {promotedLessons.map((lesson, i) => (
+          <SliderTile key={i} />
+        ))}
+        <StyledRightButton onClick={() => scroll(500)}>
           <RightArrow />
         </StyledRightButton>
       </StyledLiveSlider>
@@ -38,6 +44,7 @@ const StyledLiveSlider = styled.div`
   display: flex;
   width: 100%;
   overflow-x: scroll;
+  scroll-behavior: smooth;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;

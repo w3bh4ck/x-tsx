@@ -1,14 +1,25 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Layout from '../../containers/Layout';
 import LiveSlider from '../../containers/live-slider/LiveSlider';
+import { getPromotedLiveLessons } from '../../redux/action-creators/lessons.actions';
 
 const LiveHome = () => {
+  const dispatch = useDispatch();
+  const promotedLessons = useSelector(
+    (state: any) => state.liveLessons.promotedLiveLessons
+  );
+
+  useEffect(() => {
+    dispatch(getPromotedLiveLessons());
+  }, [dispatch]);
+
   return (
     <Layout>
       <StyledPageTitle>Live Lessons</StyledPageTitle>
       <div>
-        <LiveSlider />
+        <LiveSlider promotedLessons={promotedLessons} />
       </div>
     </Layout>
   );

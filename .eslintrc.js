@@ -34,7 +34,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
-    'no-console': 2,
+    'no-console': 1,
     strict: 0,
     ' no-case-declarations': 0,
     'react/prop-types': 0,
