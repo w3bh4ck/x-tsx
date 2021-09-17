@@ -16,7 +16,6 @@ export const GlobalStyles = createGlobalStyle`
    
 
     html {
-        font-size: 10px;
         --ff-body: "Mulish-Regular";
         --ff-heading: "Mulish-Regular";
         scroll-behavior: smooth; 
