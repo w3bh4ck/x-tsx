@@ -29,7 +29,9 @@ const StyledStatusButton = styled.div`
   justify-content: center;
   border-radius: 5px;
   background-color: red;
-
+  & .live-icon {
+    color: #ffffff;
+  }
   & .text {
     margin-left: 5px;
     text-transform: uppercase;

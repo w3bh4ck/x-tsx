@@ -2,6 +2,7 @@ import { FC, useRef } from 'react';
 import styled from 'styled-components';
 import { LeftArrow, RightArrow } from '../../assets/icons/Icons';
 import SliderTile from '../../components/cards/SliderTile';
+import { SliderTileProps } from '../../types/types';
 
 interface Iprops {
   promotedLessons: [];
@@ -20,8 +21,13 @@ const LiveSlider: FC<Iprops> = ({ promotedLessons }) => {
         <StyledLeftButton onClick={() => scroll(-500)}>
           <LeftArrow />
         </StyledLeftButton>
-        {promotedLessons.map((lesson, i) => (
-          <SliderTile key={i} />
+        {promotedLessons.map((lesson: SliderTileProps, i) => (
+          <SliderTile
+            tutor={{ firstname: 'sample', lastname: 'sample' }}
+            status="live"
+            topic={lesson?.topic}
+            key={i}
+          />
         ))}
         <StyledRightButton onClick={() => scroll(500)}>
           <RightArrow />

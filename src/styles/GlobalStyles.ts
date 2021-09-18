@@ -36,6 +36,20 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         line-height: 1.6;
         margin: 0;
-    }   
+    }
+    & .mx-2 {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+     & .px-2 {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    & .mt-1 {
+        margin-top: 5px;
+    }
+    & .d-flex {
+        display: flex;
+    } 
     }
 `;

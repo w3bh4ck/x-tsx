@@ -1,13 +1,31 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
+import { ClockIcon, LiveIcon } from '../../assets/icons/Icons';
 import StatusButton from '../buttons/StatusButton';
+import { SliderTileProps } from '../../types/types';
 
-const SliderTile = () => {
+const SliderTile: FC<SliderTileProps> = ({ topic, status, startAt, tutor }) => {
   return (
     <StyledTile>
       <TileInfo>
-        <StatusButton status={'live'} />
-        <p className="title">Materials - metals and non metals</p>
+        <StatusButton status={status} />
+        <p className="title">{topic}</p>
+        <div className="d-flex">
+          <div className="day-time">
+            <span className="mt-1">
+              <ClockIcon />
+            </span>
+            <span className="mx-2">{startAt}</span>
+          </div>
+          <div className="day-time mx-2">
+            <span>
+              <LiveIcon />
+            </span>
+            <span className="mx-2 name">
+              {tutor.firstname} {tutor.lastname}
+            </span>
+          </div>
+        </div>
       </TileInfo>
     </StyledTile>
   );
@@ -26,8 +44,16 @@ const StyledTile = styled.div`
     color: #ffffff;
     text-transform: capitalize;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 33px;
     margin-top: 10px;
+  }
+  .name {
+    text-transform: capitalize;
+  }
+  & .day-time {
+    display: flex;
+    color: #ffffff;
+    font-size: 23px;
   }
 `;
 
