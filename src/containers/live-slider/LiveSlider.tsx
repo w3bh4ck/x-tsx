@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, createRef } from 'react';
 import styled from 'styled-components';
 import { LeftArrow, RightArrow } from '../../assets/icons/Icons';
 import SliderTile from '../../components/cards/SliderTile';
@@ -6,6 +6,9 @@ import { LiveLessonDataInterface, TypeTutor } from '../../types/types';
 
 const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const slideRef = useRef(
+    promotedLessons.map(() => createRef<HTMLDivElement>())
+  );
 
   const scroll = (scrollOffset: number) => {
     if (scrollRef.current) scrollRef.current.scrollLeft += scrollOffset;
@@ -24,7 +27,8 @@ const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
             startAt={lesson.start_at as string}
             topic={lesson?.topic as string}
             imageUrl={lesson?.image_url as string}
-            key={i}
+            key={`key_${i}`}
+            ref={slideRef.current[i]}
           />
         ))}
         <StyledRightButton onClick={() => scroll(500)}>
@@ -32,10 +36,13 @@ const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
         </StyledRightButton>
       </StyledLiveSlider>
       <StyledIndicatorWrapper>
-        <StyledIndicator color="#b5b7bc" />
-        <StyledIndicator color="#b5b7bc" />
-        <StyledIndicator color="#313848" />
-        <StyledIndicator color="#313848" />
+        {promotedLessons
+          ? Array.from(Array(promotedLessons.length), e => {
+              return <StyledIndicator color="#b5b7bc" key={e} />;
+            })
+          : ''}
+
+        {/* <StyledIndicator color="#313848" /> */}
       </StyledIndicatorWrapper>
     </div>
   );
