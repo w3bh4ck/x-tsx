@@ -43,11 +43,11 @@
     "tabWidth": 2,
     "useTabs": false,
     "singleQuote": true,
+    "parser": "typescript",
     "trailingComma": "es5",
     "bracketSpacing": true,
     "proseWrap": "always",
     "jsxSingleQuote": false,
-    "jsxBracketSameLine": false,
     "quoteProps": "as-needed",
     "htmlWhitespaceSensitivity": "css",
     "arrowParens": "avoid"
@@ -57,7 +57,7 @@
       "eslint --fix",
       "prettier --write --ignore-unknown"
     ],
-    "**/*.+(css|sass|less|scss|json|html|jsx)": [
+    "**/*.+(css|sass|less|scss|html|jsx)": [
       "prettier --write --ignore-unknown"
     ]
   },
@@ -75,8 +75,10 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.9",
+    "eslint-config-typescript": "^3.0.0",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
+    "prettier": "^2.4.1",
     "redux-devtools-extension": "^2.13.9"
   }
 }

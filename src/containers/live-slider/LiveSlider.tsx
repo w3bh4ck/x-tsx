@@ -2,13 +2,9 @@ import { FC, useRef } from 'react';
 import styled from 'styled-components';
 import { LeftArrow, RightArrow } from '../../assets/icons/Icons';
 import SliderTile from '../../components/cards/SliderTile';
-import { SliderTileProps } from '../../types/types';
+import { LiveLessonDataInterface, TypeTutor } from '../../types/types';
 
-interface Iprops {
-  promotedLessons: [];
-}
-
-const LiveSlider: FC<Iprops> = ({ promotedLessons }) => {
+const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (scrollOffset: number) => {
@@ -21,11 +17,12 @@ const LiveSlider: FC<Iprops> = ({ promotedLessons }) => {
         <StyledLeftButton onClick={() => scroll(-500)}>
           <LeftArrow />
         </StyledLeftButton>
-        {promotedLessons.map((lesson: SliderTileProps, i) => (
+        {promotedLessons.map((lesson, i) => (
           <SliderTile
-            tutor={{ firstname: 'sample', lastname: 'sample' }}
-            status="live"
-            topic={lesson?.topic}
+            tutor={lesson?.tutor as TypeTutor}
+            status={lesson?.status as string}
+            topic={lesson?.topic as string}
+            imageUrl={lesson?.image_url as string}
             key={i}
           />
         ))}

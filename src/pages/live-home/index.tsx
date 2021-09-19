@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import Layout from '../../containers/Layout';
 import LiveSlider from '../../containers/live-slider/LiveSlider';
 import { getPromotedLiveLessons } from '../../redux/action-creators/lessons.actions';
+import { RootState } from '../../types/types';
 
 const LiveHome = () => {
   const dispatch = useDispatch();
   const promotedLessons = useSelector(
-    (state: any) => state.liveLessons.promotedLiveLessons
+    (state: RootState) => state.liveLessons['promotedLiveLessons']
   );
 
   useEffect(() => {
