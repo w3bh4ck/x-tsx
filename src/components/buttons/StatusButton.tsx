@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { LiveIcon } from '../../assets/icons/Icons';
+import { LiveIcon, PlayIcon, UpcomingIcon } from '../../assets/icons/Icons';
 
 interface Iprops {
   status: string;
@@ -9,9 +9,11 @@ interface Iprops {
 const StatusButton: FC<Iprops> = ({ status }) => {
   return (
     <StatusWrapper>
-      <StyledStatusButton className={`${status}`}>
+      <StyledStatusButton className={status}>
         <span>
-          <LiveIcon />
+          {status.toLowerCase() === 'live' && <LiveIcon />}
+          {status.toLowerCase() === 'upcoming' && <UpcomingIcon />}
+          {status.toLowerCase() === 'replay' && <PlayIcon />}
         </span>
         <span className="text">{status}</span>
       </StyledStatusButton>
@@ -28,7 +30,6 @@ const StyledStatusButton = styled.div`
   color: #ffffff;
   justify-content: center;
   border-radius: 5px;
-  background-color: red;
   & .live-icon {
     color: #ffffff;
   }
@@ -40,4 +41,14 @@ const StyledStatusButton = styled.div`
 
 const StatusWrapper = styled.div`
   display: inline-block;
+  & .live {
+    background-color: #da0000;
+  }
+  & .upcoming {
+    background-color: #606572;
+  }
+
+  & .replay {
+    background-color: #f2984d;
+  }
 `;
