@@ -1,14 +1,25 @@
-export interface PromotedType {}
+import rootReducer from '../redux/reducers/index';
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export interface LiveLessonDataInterface {
+  promotedLessons: Record<string, unknown>[];
+}
 
 export interface SliderTileProps {
   topic: string;
   status: string;
   startAt?: string;
-  tutor: Tutor;
+  tutor: TypeTutor;
+  imageUrl: string;
   subject?: { name: string };
 }
 
-interface Tutor {
+export interface TypeTutor {
   firstname: string;
   lastname: string;
+}
+
+export interface StyleProps {
+  bgImage?: string;
 }

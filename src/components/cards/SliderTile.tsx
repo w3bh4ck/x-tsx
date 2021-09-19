@@ -2,11 +2,17 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { ClockIcon, LiveIcon } from '../../assets/icons/Icons';
 import StatusButton from '../buttons/StatusButton';
-import { SliderTileProps } from '../../types/types';
+import { SliderTileProps, StyleProps } from '../../types/types';
 
-const SliderTile: FC<SliderTileProps> = ({ topic, status, startAt, tutor }) => {
+const SliderTile: FC<SliderTileProps> = ({
+  topic,
+  status,
+  startAt,
+  tutor,
+  imageUrl,
+}) => {
   return (
-    <StyledTile>
+    <StyledTile bgImage={imageUrl}>
       <TileInfo>
         <StatusButton status={status} />
         <p className="title">{topic}</p>
@@ -38,7 +44,10 @@ const StyledTile = styled.div`
   height: 300px;
   border-radius: 15px;
   background-color: #7b7fda;
-  background-image: url('/images/live-home.png');
+  background-image: ${(props: StyleProps) => `url(${props.bgImage})`};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 10px;
   & .title {
     color: #ffffff;
