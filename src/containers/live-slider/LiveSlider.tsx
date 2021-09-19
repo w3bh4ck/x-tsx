@@ -21,6 +21,7 @@ const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
           <SliderTile
             tutor={lesson?.tutor as TypeTutor}
             status={lesson?.status as string}
+            startAt={lesson.start_at as string}
             topic={lesson?.topic as string}
             imageUrl={lesson?.image_url as string}
             key={i}
