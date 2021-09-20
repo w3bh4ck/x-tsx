@@ -28,7 +28,6 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     
-
     body{
         font-family: var(--ff-body);
         -webkit-font-smoothing: antialiased;
@@ -36,6 +35,10 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         line-height: 1.6;
         margin: 0;
+    }
+
+    a {
+        text-decoration: none;
     }
     & .mx-2 {
         margin-right: 10px;
