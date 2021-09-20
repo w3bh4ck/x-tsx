@@ -1,25 +1,41 @@
-import { FC, useRef, createRef } from 'react';
+import { FC, useRef, createRef, useState } from 'react';
 import styled from 'styled-components';
 import { LeftArrow, RightArrow } from '../../assets/icons/Icons';
 import SliderTile from '../../components/cards/SliderTile';
 import { LiveLessonDataInterface, TypeTutor } from '../../types/types';
 
 const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
+  const [pointerState, setPointerState] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const slideRef = useRef(
     promotedLessons.map(() => createRef<HTMLDivElement>())
   );
 
+  /**
+   * @function
+   * @description Control the scroll event of the slider and estimate the position of the pointer highlight
+   * @param scrollOffset Offset value to be added to the scrollLeft value whenever the scroll button is clicked
+   */
   const scroll = (scrollOffset: number) => {
-    if (scrollRef.current) scrollRef.current.scrollLeft += scrollOffset;
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += scrollOffset;
+      let visibleWidth =
+        (scrollRef.current.scrollWidth as number) / promotedLessons.length;
+      let estimatedPosition = Math.ceil(
+        scrollRef.current.scrollLeft / visibleWidth
+      );
+      setPointerState(estimatedPosition);
+    }
   };
 
   return (
     <div>
       <StyledLiveSlider ref={scrollRef}>
-        <StyledLeftButton onClick={() => scroll(-500)}>
-          <LeftArrow />
-        </StyledLeftButton>
+        {pointerState > 0 && (
+          <StyledLeftButton onClick={() => scroll(-500)}>
+            <LeftArrow />
+          </StyledLeftButton>
+        )}
         {promotedLessons.map((lesson, i) => (
           <SliderTile
             tutor={lesson?.tutor as TypeTutor}
@@ -31,18 +47,22 @@ const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
             ref={slideRef.current[i]}
           />
         ))}
-        <StyledRightButton onClick={() => scroll(500)}>
-          <RightArrow />
-        </StyledRightButton>
+        {pointerState !== promotedLessons.length - 2 && (
+          <StyledRightButton onClick={() => scroll(500)}>
+            <RightArrow />
+          </StyledRightButton>
+        )}
       </StyledLiveSlider>
       <StyledIndicatorWrapper>
         {promotedLessons
-          ? Array.from(Array(promotedLessons.length), e => {
-              return <StyledIndicator color="#b5b7bc" key={e} />;
+          ? Array.from(Array(promotedLessons.length - 1), (elem, index) => {
+              return (
+                <StyledIndicator
+                  color={index === pointerState ? '#313848' : '#b5b7bc'}
+                />
+              );
             })
           : ''}
-
-        {/* <StyledIndicator color="#313848" /> */}
       </StyledIndicatorWrapper>
     </div>
   );
@@ -63,7 +83,7 @@ const StyledLiveSlider = styled.div`
 `;
 
 const StyledIndicator = styled.hr`
-  border-width: 4px;
+  border-width: 2px;
   border-color: ${props => props.color};
   width: 64px;
   margin: 5px;
@@ -87,7 +107,7 @@ export const StyledRightButton = styled.div`
   background-color: #ffffff;
   position: absolute;
   right: 0;
-  margin-top: 130px;
+  margin-top: 90px;
 `;
 
 export const StyledLeftButton = styled.div`
@@ -101,5 +121,5 @@ export const StyledLeftButton = styled.div`
   background-color: #ffffff;
   position: absolute;
   left: 0;
-  margin-top: 130px;
+  margin-top: 90px;
 `;
