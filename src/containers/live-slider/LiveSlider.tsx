@@ -54,8 +54,8 @@ const LiveSlider: FC<LiveLessonDataInterface> = ({ promotedLessons }) => {
         )}
       </StyledLiveSlider>
       <StyledIndicatorWrapper>
-        {promotedLessons
-          ? Array.from(Array(promotedLessons.length - 1), (elem, index) => {
+        {promotedLessons.length
+          ? Array.from(Array(promotedLessons?.length - 1), (elem, index) => {
               return (
                 <StyledIndicator
                   color={index === pointerState ? '#313848' : '#b5b7bc'}

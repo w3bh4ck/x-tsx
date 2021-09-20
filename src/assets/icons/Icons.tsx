@@ -127,8 +127,8 @@ export const UpcomingIcon = () => {
 export const PersonIcon = () => {
   return (
     <svg
-      width={13}
-      height={14}
+      width={17}
+      height={18}
       viewBox="0 0 13 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

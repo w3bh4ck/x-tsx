@@ -45,11 +45,35 @@ export const GlobalStyles = createGlobalStyle`
         padding-right: 10px;
         padding-left: 10px;
     }
-    & .mt-1 {
+     .pt-1 {
+        padding-top: 5px;
+    }
+    .mt-1 {
         margin-top: 5px;
     }
-    & .d-flex {
+    .mt-2 {
+        margin-top: 15px;
+    }
+     .ml-1 {
+        margin-left: 10px;
+    }
+     .d-flex {
         display: flex;
-    } 
+    }
+    .subject {
+        font-size: 14px;
+    }
+    .physics {
+        color: #7B7FDA;
+    }
+    .mathematics {
+        color: #EA7052;
+    }
+    .biology {
+        color: #68BC98;
+    }
+     .chemistry {
+        color: #F9AD6D;
+    }
     }
 `;
