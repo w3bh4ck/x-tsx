@@ -24,6 +24,10 @@ export interface TypeTutor {
   lastname: string;
 }
 
+export interface TypeSubject {
+  name: string;
+}
+
 export interface StyleProps {
   bgImage?: string;
 }
