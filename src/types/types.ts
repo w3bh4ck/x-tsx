@@ -6,7 +6,7 @@ export interface LiveLessonDataInterface {
   promotedLessons: Record<string, unknown>[];
 }
 
-export interface SliderTileProps {
+export interface LessonInterface {
   topic: string;
   status: string;
   startAt?: string;

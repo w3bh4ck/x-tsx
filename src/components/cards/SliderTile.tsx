@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { ClockIcon, LiveIcon } from '../../assets/icons/Icons';
 import StatusButton from '../buttons/StatusButton';
-import { SliderTileProps, StyleProps } from '../../types/types';
+import { LessonInterface, StyleProps } from '../../types/types';
 import { formatDistanceToNow, format } from 'date-fns';
 
-const SliderTile = React.forwardRef<HTMLDivElement, SliderTileProps>(
+const SliderTile = React.forwardRef<HTMLDivElement, LessonInterface>(
   (props, ref) => {
     const { topic, status, startAt, tutor, imageUrl } = props;
 
