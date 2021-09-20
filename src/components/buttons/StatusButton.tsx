@@ -35,6 +35,7 @@ const StyledStatusButton = styled.div`
   }
   & .text {
     margin-left: 5px;
+    font-size: 16px;
     text-transform: uppercase;
   }
 `;
