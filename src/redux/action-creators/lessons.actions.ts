@@ -27,7 +27,7 @@ export const getPromotedLiveLessons = () => async (dispatch: Dispatch) => {
  * @description fetch general lessons
  * @returns Response data
  */
-export const getLessons = () => async (dispatch: Dispatch) => {
+export const getAllLessons = () => async (dispatch: Dispatch) => {
   let url = '/lessons';
   try {
     let response = await axios.get(url);

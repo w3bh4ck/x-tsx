@@ -1,36 +1,31 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-// import LessonCard from '../../components/cards/LessonCard';
 import Layout from '../../containers/Layout';
+import LessonGrid from '../../containers/lesson-grid/LessonGrid';
 import LiveSlider from '../../containers/live-slider/LiveSlider';
-import { getPromotedLiveLessons } from '../../redux/action-creators/lessons.actions';
+import {
+  getAllLessons,
+  getPromotedLiveLessons,
+} from '../../redux/action-creators/lessons.actions';
 import { RootState } from '../../types/types';
 
 const LiveHome = () => {
   const dispatch = useDispatch();
-  const promotedLessons = useSelector(
-    (state: RootState) => state.liveLessons['promotedLiveLessons']
-  );
+  const lessons = useSelector((state: RootState) => state.lessons);
 
   useEffect(() => {
     dispatch(getPromotedLiveLessons());
+    dispatch(getAllLessons());
   }, [dispatch]);
 
   return (
     <Layout>
       <StyledPageTitle>Live Lessons</StyledPageTitle>
       <div>
-        <LiveSlider promotedLessons={promotedLessons} />
+        <LiveSlider promotedLessons={lessons['promotedLiveLessons']} />
       </div>
-      <GridContainer>
-        {/* <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard />
-        <LessonCard /> */}
-      </GridContainer>
+      <LessonGrid allLessons={lessons['allLessons']} />
     </Layout>
   );
 };
@@ -42,10 +37,4 @@ const StyledPageTitle = styled.p`
   font-size: 24px;
   font-weight: 700;
   padding: 10px 10px 10px 30px;
-`;
-
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 10px 50px 10px 50px;
 `;

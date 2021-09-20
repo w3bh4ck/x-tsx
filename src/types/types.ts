@@ -6,6 +6,10 @@ export interface LiveLessonDataInterface {
   promotedLessons: Record<string, unknown>[];
 }
 
+export interface allLessonsDataInterface {
+  allLessons: Record<string, unknown>[];
+}
+
 export interface LessonInterface {
   topic: string;
   status: string;
