@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { CalendarIcon, DownArrowIcon } from '../../assets/icons/Icons';
+import PageLoader from '../../components/loaders/PageLoader';
 import Layout from '../../containers/Layout';
 import LessonGrid from '../../containers/lesson-grid/LessonGrid';
 import LiveSlider from '../../containers/live-slider/LiveSlider';
@@ -23,25 +24,31 @@ const LiveHome = () => {
 
   return (
     <Layout>
-      <StyledPageTitle>Live Lessons</StyledPageTitle>
-      <div>
-        <LiveSlider promotedLessons={lessons['promotedLiveLessons']} />
-      </div>
-      <LiveActionSection>
-        <StyledSubjectButton>
-          <span>All Subjects</span>
-          <span>
-            <DownArrowIcon />
-          </span>
-        </StyledSubjectButton>
-        <StyledCalendarButton to="/my-lessons">
-          <span>
-            <CalendarIcon />
-          </span>
-          <span className="mx-2">View my lessons</span>
-        </StyledCalendarButton>
-      </LiveActionSection>
-      <LessonGrid allLessons={lessons['allLessons']} />
+      {!lessons['loading'] ? (
+        <>
+          <StyledPageTitle>Live Lessons</StyledPageTitle>
+          <div>
+            <LiveSlider promotedLessons={lessons['promotedLiveLessons']} />
+          </div>
+          <LiveActionSection>
+            <StyledSubjectButton>
+              <span>All Subjects</span>
+              <span>
+                <DownArrowIcon />
+              </span>
+            </StyledSubjectButton>
+            <StyledCalendarButton to="/my-lessons">
+              <span>
+                <CalendarIcon />
+              </span>
+              <span className="mx-2">View my lessons</span>
+            </StyledCalendarButton>
+          </LiveActionSection>
+          <LessonGrid allLessons={lessons['allLessons']} />
+        </>
+      ) : (
+        <PageLoader />
+      )}
     </Layout>
   );
 };

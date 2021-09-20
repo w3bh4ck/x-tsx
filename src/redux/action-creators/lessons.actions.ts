@@ -8,6 +8,10 @@ import axios from 'axios';
  */
 export const getPromotedLiveLessons = () => async (dispatch: Dispatch) => {
   let url = '/promoted';
+  dispatch({
+    type: lessonActionTypes.LOADING,
+    payload: true,
+  });
   try {
     let response = await axios.get(url);
     const { success, data } = response?.data;
@@ -16,9 +20,17 @@ export const getPromotedLiveLessons = () => async (dispatch: Dispatch) => {
         type: lessonActionTypes.GET_PROMOTED_LIVE_LESSONS,
         payload: data,
       });
+      dispatch({
+        type: lessonActionTypes.LOADING,
+        payload: false,
+      });
       return data;
     }
   } catch (error) {
+    dispatch({
+      type: lessonActionTypes.LOADING,
+      payload: false,
+    });
     return error;
   }
 };
@@ -29,6 +41,10 @@ export const getPromotedLiveLessons = () => async (dispatch: Dispatch) => {
  */
 export const getAllLessons = () => async (dispatch: Dispatch) => {
   let url = '/lessons';
+  dispatch({
+    type: lessonActionTypes.LOADING,
+    payload: true,
+  });
   try {
     let response = await axios.get(url);
     const { success, data } = response?.data;
@@ -37,9 +53,17 @@ export const getAllLessons = () => async (dispatch: Dispatch) => {
         type: lessonActionTypes.GET_ALL_LESSONS,
         payload: data,
       });
+      dispatch({
+        type: lessonActionTypes.LOADING,
+        payload: false,
+      });
       return data;
     }
   } catch (error) {
+    dispatch({
+      type: lessonActionTypes.LOADING,
+      payload: false,
+    });
     return error;
   }
 };
