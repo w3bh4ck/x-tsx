@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import rootReducer from '../redux/reducers/index';
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -17,6 +18,12 @@ export interface LessonInterface {
   tutor: TypeTutor;
   imageUrl: string;
   subject?: { name: string };
+}
+
+export interface EmptyStateInterface {
+  title: string;
+  description: string;
+  children: ReactNode;
 }
 
 export interface TypeTutor {
