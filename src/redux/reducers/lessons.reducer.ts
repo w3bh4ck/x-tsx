@@ -8,6 +8,7 @@ interface Action {
 const initialState = {
   promotedLiveLessons: [],
   allLessons: [],
+  myLessons: [],
   loading: false,
 };
 
@@ -17,6 +18,8 @@ export default (state = initialState, action: Action) => {
       return { ...state, promotedLiveLessons: action.payload };
     case lessonActionTypes.GET_ALL_LESSONS:
       return { ...state, allLessons: action.payload };
+    case lessonActionTypes.GET_MY_LESSONS:
+      return { ...state, myLessons: action.payload };
     case lessonActionTypes.LOADING:
       return { ...state, loading: action.payload };
     default:
