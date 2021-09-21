@@ -25,7 +25,7 @@ const Spinner = styled.div`
   border-top: 2px solid #ffffff;
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
-  border-left: 4px solid black;
+  border-left: 4px solid #7b7fda;
   background: transparent;
   width: 40px;
   height: 40px;
@@ -33,7 +33,7 @@ const Spinner = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 50px;
+  padding-top: 10%;
   width: 100%;
   height: 300px;
   display: flex;

@@ -1,7 +1,9 @@
+import { formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns/esm';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { ClockIcon, PersonIcon } from '../../assets/icons/Icons';
-import { LessonInterface } from '../../types/types';
+import { LessonInterface, StyleProps } from '../../types/types';
 import StatusButton from '../buttons/StatusButton';
 
 const LessonCard: FC<LessonInterface> = ({
@@ -13,28 +15,37 @@ const LessonCard: FC<LessonInterface> = ({
   imageUrl,
 }) => {
   return (
-    <StyledCardWrapper>
+    <StyledCardWrapper bgImage={imageUrl}>
       <div className="card-header">
         <div className="status-button">
-          <StatusButton status="live" />
+          <StatusButton status={status} />
         </div>
         <CardBody>
-          <p className="subject physics">Physics</p>
-          <p className="title">
-            Materials - Metallic & Non Metallic Properties for physics
+          <p className={`subject ${subject?.name.toLowerCase()}`}>
+            {subject?.name}
           </p>
-          <div className="time-date mt-2">
+          <p className="title">{topic}</p>
+          <div className="time-date mt-1">
             <span className="pt-1">
               <ClockIcon />
             </span>{' '}
-            <span className="ml-1">Today,</span>
-            <span className="ml-1">3 PM</span>
+            <span className="ml-1">
+              {formatDistanceToNow(new Date(startAt ? startAt : Date.now()), {
+                addSuffix: true,
+              })}
+              ,
+            </span>
+            <span className="ml-1">
+              {format(new Date(startAt ? startAt : Date.now()), 'h:m b')}
+            </span>
           </div>
           <div className="time-date">
             <span className="pt-1">
               <PersonIcon />
             </span>{' '}
-            <span className="ml-1">John Kalu</span>
+            <span className="ml-1">
+              {tutor?.firstname} {tutor?.lastname}
+            </span>
           </div>
         </CardBody>
       </div>
@@ -60,13 +71,16 @@ const StyledCardWrapper = styled.div`
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-color: #7b7fda;
-    background-image: url('/images/live-tile.png');
+    background-image: ${(props: StyleProps) => `url(${props.bgImage})`};
+  }
+  @media only screen and (max-width: ${props =>
+      props.theme.breakpoints.medium}) {
+    width: 100%;
   }
 `;
 
 const CardBody = styled.div`
   padding: 20px;
-
   & .title {
     color: #313848;
     text-transform: capitalize;

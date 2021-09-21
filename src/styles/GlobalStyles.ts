@@ -28,7 +28,6 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
     
-
     body{
         font-family: var(--ff-body);
         -webkit-font-smoothing: antialiased;
@@ -37,13 +36,25 @@ export const GlobalStyles = createGlobalStyle`
         line-height: 1.6;
         margin: 0;
     }
+
+    a {
+        text-decoration: none;
+    }
     & .mx-2 {
         margin-right: 10px;
         margin-left: 10px;
     }
+     & .mx-3 {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
      & .px-2 {
         padding-right: 10px;
         padding-left: 10px;
+    }
+     & .px-3 {
+        padding-right: 20px;
+        padding-left: 20px;
     }
      .pt-1 {
         padding-top: 5px;

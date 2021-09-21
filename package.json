@@ -57,7 +57,7 @@
       "eslint --fix",
       "prettier --write --ignore-unknown"
     ],
-    "**/*.+(css|sass|less|scss|html|jsx)": [
+    "**/*.+(css|sass|less|scss|jsx)": [
       "prettier --write --ignore-unknown"
     ]
   },

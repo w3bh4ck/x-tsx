@@ -14,6 +14,32 @@ export const RightArrow = () => {
     </svg>
   );
 };
+export const BackArrowIcon = () => {
+  return (
+    <svg
+      width={38}
+      height={12}
+      viewBox="0 0 38 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.10999 11.21L0.999985 6.32L6.10999 1"
+        stroke="#313848"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M37.47 6.1001H1.32997"
+        stroke="#313848"
+        strokeWidth="1.5"
+        strokeMiterlimit={10}
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
 
 export const LeftArrow = () => {
   return (
