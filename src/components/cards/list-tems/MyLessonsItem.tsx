@@ -1,30 +1,48 @@
-import React from 'react';
+import { formatDistanceToNow, format } from 'date-fns';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { ClockIcon, PersonIcon } from '../../../assets/icons/Icons';
+import { LessonInterface, StyleProps } from '../../../types/types';
 import StatusButton from '../../buttons/StatusButton';
 
-const MyLessonItem = () => {
+const MyLessonItem: FC<LessonInterface> = ({
+  topic,
+  status,
+  subject,
+  tutor,
+  startAt,
+  imageUrl,
+}) => {
   return (
-    <ItemWrapper>
+    <ItemWrapper bgImage={imageUrl}>
       <div className="lesson-image">
         <div className="status">
-          <StatusButton status="live" />
+          <StatusButton status={status} />
         </div>
       </div>
       <div className="item-content px-3">
-        <p className="physics subject">Physics</p>
-        <p className="title">Materials - Metallic & Non Metallic Properties</p>
+        <p className={`${subject?.name.toLowerCase()} subject`}>
+          {subject?.name}
+        </p>
+        <p className="title">{topic}</p>
         <div className="time-date">
           <span className="pt-1">
             <ClockIcon />
           </span>{' '}
-          <span className="ml-1 pt-1">Today, 3:30PM</span>
+          <span className="ml-1 pt-1">
+            {formatDistanceToNow(new Date(startAt ? startAt : Date.now()), {
+              addSuffix: true,
+            })}
+            , {format(new Date(startAt ? startAt : Date.now()), 'h:m b')}
+          </span>
         </div>
         <div className="time-date">
           <span className="pt-1">
             <PersonIcon />
           </span>{' '}
-          <span className="ml-1 pt-1">Amadi Lucky</span>
+          <span className="ml-1 pt-1">
+            {tutor?.firstname} {tutor?.lastname}
+          </span>
         </div>
       </div>
     </ItemWrapper>
@@ -40,6 +58,10 @@ const ItemWrapper = styled.div`
     height: 130px;
     width: 50%;
     background-color: #7b7fda;
+    background-image: ${(props: StyleProps) => `url(${props.bgImage})`};
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 9px;
   }
   & .title {

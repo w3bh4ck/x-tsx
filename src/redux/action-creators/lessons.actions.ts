@@ -67,3 +67,36 @@ export const getAllLessons = () => async (dispatch: Dispatch) => {
     return error;
   }
 };
+
+/**
+ * @description fetch my lessons
+ * @returns Response data
+ */
+export const getMyLessons = () => async (dispatch: Dispatch) => {
+  let url = '/lessons/me';
+  dispatch({
+    type: lessonActionTypes.LOADING,
+    payload: true,
+  });
+  try {
+    let response = await axios.get(url);
+    const { success, data } = response?.data;
+    if (success) {
+      dispatch({
+        type: lessonActionTypes.GET_MY_LESSONS,
+        payload: data,
+      });
+      dispatch({
+        type: lessonActionTypes.LOADING,
+        payload: false,
+      });
+      return data;
+    }
+  } catch (error) {
+    dispatch({
+      type: lessonActionTypes.LOADING,
+      payload: false,
+    });
+    return error;
+  }
+};

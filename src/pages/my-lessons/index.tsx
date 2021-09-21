@@ -1,10 +1,22 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { BackArrowIcon, DownArrowIcon } from '../../assets/icons/Icons';
+import PageLoader from '../../components/loaders/PageLoader';
 import { MyLessonLayout } from '../../containers/Layout';
 import MyLessonsGrid from '../../containers/my-lessons-list/MyLessons';
+import { getMyLessons } from '../../redux/action-creators/lessons.actions';
+import { RootState } from '../../types/types';
 
 const MyLessons = () => {
+  const dispatch = useDispatch();
+  const lessons = useSelector((state: RootState) => state.lessons);
+
+  useEffect(() => {
+    dispatch(getMyLessons());
+  }, [dispatch]);
+
   return (
     <MyLessonLayout>
       <NavWrapper className="d-flex">
@@ -26,9 +38,13 @@ const MyLessons = () => {
           <span className="mx-2">Add live lessons</span>
         </StyledAddLessonButton>
       </LiveActionSection>
-      <div className="my-lessons">
-        <MyLessonsGrid />
-      </div>
+      {!lessons['loading'] ? (
+        <div className="my-lessons">
+          <MyLessonsGrid myLessons={lessons['myLessons']} />
+        </div>
+      ) : (
+        <PageLoader />
+      )}
     </MyLessonLayout>
   );
 };

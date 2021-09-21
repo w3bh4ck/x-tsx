@@ -7,14 +7,18 @@ export interface LiveLessonDataInterface {
   promotedLessons: Record<string, unknown>[];
 }
 
-export interface allLessonsDataInterface {
+export interface AllLessonsDataInterface {
   allLessons: Record<string, unknown>[];
+}
+
+export interface MyLessonsDataInterface {
+  myLessons: Record<string, unknown>[];
 }
 
 export interface LessonInterface {
   topic: string;
   status: string;
-  startAt?: string;
+  startAt: string;
   tutor: TypeTutor;
   imageUrl: string;
   subject?: { name: string };

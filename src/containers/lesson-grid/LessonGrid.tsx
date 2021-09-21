@@ -4,20 +4,21 @@ import { EmptyLiveLessonIcon } from '../../assets/icons/Icons';
 import LessonCard from '../../components/cards/LessonCard';
 import LessonsEmpty from '../../components/empty-states/LessonsEmpty';
 import {
-  allLessonsDataInterface,
+  AllLessonsDataInterface,
   TypeSubject,
   TypeTutor,
 } from '../../types/types';
 
-const LessonGrid: FC<allLessonsDataInterface> = ({ allLessons }) => {
+const LessonGrid: FC<AllLessonsDataInterface> = ({ allLessons }) => {
   return (
     <>
       {allLessons.length > 0 ? (
         <GridContainer>
           {allLessons
-            ? allLessons.map(lesson => {
+            ? allLessons.map((lesson, i: number) => {
                 return (
                   <LessonCard
+                    key={i}
                     imageUrl={lesson?.image_url as string}
                     topic={lesson?.topic as string}
                     status={lesson?.status as string}
